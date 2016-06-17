@@ -1,10 +1,14 @@
 package quoters;
 
+import mySpring.Benchmark;
+import mySpring.Transactional;
+
 import java.util.List;
 
 /**
  * Created by Evegeny on 17/06/2016.
  */
+@Transactional
 public class TerminatorQuoter implements Quoter {
     private List<String> messages;
 
@@ -13,6 +17,7 @@ public class TerminatorQuoter implements Quoter {
     }
 
     @Override
+    @Benchmark
     public void sayQuote() {
         messages.forEach(System.out::println);
     }
