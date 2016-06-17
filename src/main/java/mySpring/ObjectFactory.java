@@ -2,7 +2,10 @@ package mySpring;
 
 import org.reflections.Reflections;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,7 @@ public class ObjectFactory {
     private static ObjectFactory ourInstance = new ObjectFactory();
     private Config config = new JavaConfig();
     private List<ObjectConfigurator> objectConfigurators = new ArrayList<>();
-    private Reflections reflections = new Reflections();
+    private Reflections reflections = new Reflections("mySpring");
 
     public static ObjectFactory getInstance() {
         return ourInstance;
@@ -43,7 +46,14 @@ public class ObjectFactory {
         return t;
     }
 
-
+    private <T> void invokeInitMethod(T t) throws InvocationTargetException, IllegalAccessException {
+        Method[] methods = t.getClass().getMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(PostConstruct.class)) {
+                method.invoke(t);
+            }
+        }
+    }
 
 
     private <T> void configure(T t) throws Exception {

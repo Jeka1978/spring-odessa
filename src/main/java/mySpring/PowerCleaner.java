@@ -5,7 +5,7 @@ package mySpring;
  */
 public class PowerCleaner implements Cleaner {
 
-    @InjectRandomInt(min=5,max = 8)
+    @InjectRandomInt(min = 5, max = 8)
     private int repeat;
 
     @Override
