@@ -1,12 +1,10 @@
 package mySpring;
 
 import org.reflections.Reflections;
+import org.springframework.util.ClassUtils;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,6 +41,17 @@ public class ObjectFactory {
         T t = type.newInstance();
         configure(t);
         invokeInitMethod(t);
+        if (type.isAnnotationPresent(Benchmark.class)) {
+            return (T) Proxy.newProxyInstance(type.getClassLoader(), ClassUtils.getAllInterfacesForClass(type), (proxy, method, args) -> {
+                System.out.println("***************BENCHMARK******************");
+                long before = System.nanoTime();
+                Object retVal = method.invoke(t, args);
+                long after = System.nanoTime();
+                System.out.println("method: "+method.getName()+" was working for: "+(after-before));
+                System.out.println("***************BENCHMARK******************");
+                return retVal;
+            });
+        }
         return t;
     }
 
@@ -63,10 +72,18 @@ public class ObjectFactory {
     }
 
     private <T> Class<T> resolveImpl(Class<T> type) {
+        Class<T> returnType = null;
         if (type.isInterface()) {
-            type = config.getImpl(type);
+            returnType = config.getImpl(type);
         }
-        return type;
+        if (returnType == null) {
+            Set<Class<? extends T>> classes = reflections.getSubTypesOf(type);
+            if (classes.size() != 1) {
+                throw new RuntimeException("ifc " + type + " has 0 or more than one impl, please update your config");
+            }
+            returnType = (Class<T>) classes.iterator().next();
+        }
+        return returnType;
     }
 }
 

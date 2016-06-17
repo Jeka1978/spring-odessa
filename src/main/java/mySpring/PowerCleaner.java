@@ -3,6 +3,7 @@ package mySpring;
 /**
  * Created by Evegeny on 17/06/2016.
  */
+@Benchmark
 public class PowerCleaner implements Cleaner {
 
     @InjectRandomInt(min = 5, max = 8)

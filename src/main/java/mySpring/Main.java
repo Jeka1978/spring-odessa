@@ -5,7 +5,12 @@ package mySpring;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        IRobot iRobot = ObjectFactory.getInstance().createObject(IRobot.class);
-        iRobot.cleanRoom();
+        ObjectFactory factory = ObjectFactory.getInstance();
+        /*IRobot iRobot = factory.createObject(IRobot.class);
+        iRobot.cleanRoom();*/
+        MyService myService = factory.createObject(MyService.class);
+        myService.drinkBeer();
+        myService.work();
+
     }
 }
