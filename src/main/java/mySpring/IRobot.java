@@ -1,10 +1,12 @@
 package mySpring;
 
 import javax.annotation.PostConstruct;
+import java.io.Serializable;
 
 /**
  * Created by Evegeny on 17/06/2016.
  */
+@Transactional
 public class IRobot {
     @Inject
     private Speaker speaker;

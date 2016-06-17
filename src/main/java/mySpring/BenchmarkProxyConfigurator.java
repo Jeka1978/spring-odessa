@@ -10,8 +10,7 @@ import java.lang.reflect.Proxy;
  */
 public class BenchmarkProxyConfigurator implements ProxyConfigurator {
     @Override
-    public Object wrapWithProxy(Object t) {
-        Class<?> type = t.getClass();
+    public Object wrapWithProxy(Object t, Class type) {
         Method[] methods = type.getMethods();
         for (Method classMethod : methods) {
             if (classMethod.isAnnotationPresent(Benchmark.class)) {

@@ -52,14 +52,32 @@ public class ObjectFactory {
         T t = type.newInstance();
         configure(t);
         invokeInitMethod(t);
-        t = configureProxy(t);
+        t = configureProxy(t,type);
 
         return t;
     }
 
-    private <T> T configureProxy(T t) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private <T> T configureProxy(T t, Class originalClass) {
         for (ProxyConfigurator proxyConfigurator : proxyConfigurators) {
-            t = (T) proxyConfigurator.wrapWithProxy(t);
+            t = (T) proxyConfigurator.wrapWithProxy(t,originalClass);
         }
         return t;
     }
