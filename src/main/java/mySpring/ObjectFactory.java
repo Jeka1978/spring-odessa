@@ -17,6 +17,7 @@ public class ObjectFactory {
     private static ObjectFactory ourInstance = new ObjectFactory();
     private Config config = new JavaConfig();
     private List<ObjectConfigurator> objectConfigurators = new ArrayList<>();
+    private List<ProxyConfigurator> proxyConfigurators = new ArrayList<>();
     private Reflections reflections = new Reflections("mySpring");
 
     public static ObjectFactory getInstance() {
@@ -34,6 +35,16 @@ public class ObjectFactory {
                 }
             }
         }
+        Set<Class<? extends ProxyConfigurator>> proxyConfiguratorClasses = reflections.getSubTypesOf(ProxyConfigurator.class);
+        for (Class<? extends ProxyConfigurator> aClass : proxyConfiguratorClasses) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                try {
+                    proxyConfigurators.add(aClass.newInstance());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
     public <T> T createObject(Class<T> type) throws Exception {
@@ -41,16 +52,14 @@ public class ObjectFactory {
         T t = type.newInstance();
         configure(t);
         invokeInitMethod(t);
-        if (type.isAnnotationPresent(Benchmark.class)) {
-            return (T) Proxy.newProxyInstance(type.getClassLoader(), ClassUtils.getAllInterfacesForClass(type), (proxy, method, args) -> {
-                System.out.println("***************BENCHMARK******************");
-                long before = System.nanoTime();
-                Object retVal = method.invoke(t, args);
-                long after = System.nanoTime();
-                System.out.println("method: "+method.getName()+" was working for: "+(after-before));
-                System.out.println("***************BENCHMARK******************");
-                return retVal;
-            });
+        t = configureProxy(t);
+
+        return t;
+    }
+
+    private <T> T configureProxy(T t) {
+        for (ProxyConfigurator proxyConfigurator : proxyConfigurators) {
+            t = (T) proxyConfigurator.wrapWithProxy(t);
         }
         return t;
     }
