@@ -1,15 +1,19 @@
 package mySpring;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created by Evegeny on 17/06/2016.
  */
 public class IRobot {
+    @Inject
     private Speaker speaker;
+    @Inject
     private Cleaner cleaner;
 
-    public IRobot() throws Exception {
-        speaker = ObjectFactory.getInstance().createObject(Speaker.class);
-        cleaner = ObjectFactory.getInstance().createObject(Cleaner.class);
+    @PostConstruct
+    public void init() {
+        System.out.println(cleaner.getClass());
     }
 
     public void cleanRoom() {

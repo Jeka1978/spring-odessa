@@ -5,7 +5,7 @@ package mySpring;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        IRobot iRobot = new IRobot();
+        IRobot iRobot = ObjectFactory.getInstance().createObject(IRobot.class);
         iRobot.cleanRoom();
     }
 }

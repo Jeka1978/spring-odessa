@@ -1,11 +1,14 @@
 package mySpring;
 
+import org.springframework.core.annotation.Order;
+
 import java.lang.reflect.Field;
 import java.util.Random;
 
 /**
  * Created by Evegeny on 17/06/2016.
  */
+@Order(1)
 public class InjectRandomIntAnnotationObjectConfigurator implements ObjectConfigurator {
     @Override
     public void configure(Object t) throws Exception {
