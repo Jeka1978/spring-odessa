@@ -2,18 +2,27 @@ package quoters;
 
 import mySpring.Benchmark;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Evegeny on 17/06/2016.
  */
 public class BenchmarkAnnotationBeanPosrtProcessor implements BeanPostProcessor {
+
+
+
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+
         return bean;
     }
 
