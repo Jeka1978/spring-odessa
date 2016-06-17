@@ -8,6 +8,7 @@
     <bean class="quoters.InjectRandomIntAnnotationBeanPostProcessor"/>
     <bean class="quoters.BenchmarkAnnotationBeanPosrtProcessor"/>
     <bean class="quoters.TransactionalAnnotationBeanPostProcessor"/>
+    <bean class="quoters.DeprecationClassReplacerBeanFactoryPostProcessor"/>
 
     <context:property-placeholder location="user.properties"/>
 
