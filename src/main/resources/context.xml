@@ -15,7 +15,9 @@
     </bean>
 
 
+    <!--<bean id="randomInt" class="java.lang.Integer" factory-bean="integerFactory" factory-method="getRandomInt" scope="singleton">
 
+    </bean>-->
     <context:property-placeholder location="user.properties"/>
 
     <bean id="quote" class="java.lang.String">
