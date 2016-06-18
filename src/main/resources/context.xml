@@ -10,6 +10,12 @@
     <bean class="quoters.TransactionalAnnotationBeanPostProcessor"/>
     <bean class="quoters.DeprecationClassReplacerBeanFactoryPostProcessor"/>
 
+    <bean id="integerFactory" class="quoters.IntegerFactory">
+        <constructor-arg value="10"/>
+    </bean>
+
+
+
     <context:property-placeholder location="user.properties"/>
 
     <bean id="quote" class="java.lang.String">

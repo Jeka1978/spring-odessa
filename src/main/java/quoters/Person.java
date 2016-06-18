@@ -1,5 +1,7 @@
 package quoters;
 
+import org.springframework.beans.factory.annotation.Value;
+
 /**
  * Created by Evegeny on 17/06/2016.
  */
