@@ -1,5 +1,7 @@
 package mailServer;
 
+import org.fluttercode.datafactory.impl.DataFactory;
+
 import java.util.Random;
 
 /**
@@ -8,7 +10,8 @@ import java.util.Random;
 public class DBUtils {
     public static MailInfo getMailInfo() {
         Random random = new Random();
-        return new MailInfo(random.nextInt(2) + 1);
+        DataFactory dataFactory = new DataFactory();
+        return new MailInfo(random.nextInt(3) + 1,dataFactory.getName());
 
     }
 }
