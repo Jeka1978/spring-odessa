@@ -1,7 +1,6 @@
 package screenSaver;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +12,10 @@ import java.util.Random;
 /**
  * Created by Evegeny on 18/06/2016.
  */
-public abstract class ColorFrame extends JFrame {
+@Component
+public class ColorFrame extends JFrame {
+    @Autowired
+    private Color color;
 
     public ColorFrame() {
         setSize(250,250);
@@ -24,11 +26,9 @@ public abstract class ColorFrame extends JFrame {
     public void fly() {
         Random random = new Random();
         setLocation(random.nextInt(1200),random.nextInt(900));
-        getContentPane().setBackground(getColorBean());
+        getContentPane().setBackground(color);
         repaint();
     }
-
-    protected abstract Color getColorBean() ;
 }
 
 
