@@ -11,10 +11,13 @@
 
     </bean>-->
     <context:property-placeholder location="user.properties"/>
+    <bean id="color" class="java.awt.Color">
 
+    </bean>
 
-
-
+    <bean class="screenSaver.ColorFrame">
+        <lookup-method bean="color"/>
+    </bean>
 
 
 </beans>
