@@ -1,4 +1,4 @@
-package profiles;
+package conditional;
 
 /**
  * Created by Evegeny on 18/06/2016.
