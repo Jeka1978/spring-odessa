@@ -1,9 +1,6 @@
 package screenSaver;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.context.annotation.*;
 
 import java.awt.*;
 import java.util.Random;
@@ -12,6 +9,7 @@ import java.util.Random;
  * Created by Evegeny on 18/06/2016.
  */
 @Configuration
+@ImportResource("classpath:context.xml")
 public class Config {
 
     @Bean

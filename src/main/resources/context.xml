@@ -11,12 +11,10 @@
 
     </bean>-->
     <context:property-placeholder location="user.properties"/>
-    <bean id="color" class="java.awt.Color">
-
-    </bean>
+    <context:component-scan base-package="screenSaver"/>
 
     <bean class="screenSaver.ColorFrame">
-        <lookup-method bean="color"/>
+        <lookup-method bean="randomColor"/>
     </bean>
 
 
