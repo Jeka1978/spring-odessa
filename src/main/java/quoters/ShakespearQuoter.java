@@ -1,6 +1,7 @@
 package quoters;
 
 import mySpring.InjectRandomInt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,9 @@ public class ShakespearQuoter implements Quoter {
     private String message;
     @InjectRandomInt(min = 4, max = 7)
     private int repeat;
+
+    @Autowired
+    private Lenin lenin;
 
 
     @Override

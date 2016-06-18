@@ -13,6 +13,6 @@ import org.springframework.stereotype.Component;
 public class QuoterAspect {
     @Before("execution(* quoters..*.say*(..))")
     public void printAuthor(JoinPoint jp){
-        System.out.print("this is quote of:  "+jp.getTarget().getClass().getSimpleName());
+        System.out.print("this is quote of: "+jp.getTarget().getClass().getSimpleName()+" ");
     }
 }
