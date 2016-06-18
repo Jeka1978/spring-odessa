@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
  * Created by Evegeny on 18/06/2016.
  */
 @Configuration
+@EnableAspectJAutoProxy
 @PropertySource("classpath:user.properties")
 @PropertySource("classpath:user.properties")
 @PropertySource("classpath:user.properties")
