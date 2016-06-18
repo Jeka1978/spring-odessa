@@ -13,8 +13,18 @@ import java.util.Random;
  */
 @Configuration
 public class Config {
+
     @Bean
-    @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public ColorFrame colorFrame(){
+        return new ColorFrame() {
+            @Override
+            protected Color getColorBean() {
+                return randomColor();
+            }
+        };
+    }
+    @Bean
+    @Scope(value = "prototype")
     public Color randomColor() {
         Random random = new Random();
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
