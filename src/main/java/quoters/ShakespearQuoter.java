@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * Created by Evegeny on 17/06/2016.
  */
 @Component
-@Classic(century = 16)
+//@Classic(century = 16)
 public class ShakespearQuoter implements Quoter {
     @Value("${shakespeare}")
     private String message;

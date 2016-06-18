@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 @PropertySource("classpath:user.properties")
 @PropertySource("classpath:user.properties")
 @PropertySource(value = "file:c:\\prod\\user.properties", ignoreResourceNotFound = true)
+@ComponentScan(basePackages = "quoters")
 
 public class Config {
 

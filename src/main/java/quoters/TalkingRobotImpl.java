@@ -18,7 +18,7 @@ import java.util.List;
 public class TalkingRobotImpl implements TalkingRobot {
 
     @Autowired(required = false)
-    @Classic(century = 16)
+//    @Classic(century = 16)
     private List<Quoter> quoters = new ArrayList<>(Arrays.asList(new Quoter() {
         @Override
         public void sayQuote() {
