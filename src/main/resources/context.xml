@@ -4,11 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <import resource="infra.xml"/>
 
-    <bean id="integerFactory" class="quoters.IntegerFactory">
-        <constructor-arg value="10"/>
-    </bean>
 
 
     <!--<bean id="randomInt" class="java.lang.Integer" factory-bean="integerFactory" factory-method="getRandomInt" scope="singleton">
@@ -16,26 +12,7 @@
     </bean>-->
     <context:property-placeholder location="user.properties"/>
 
-    <bean id="quote" class="java.lang.String">
-        <constructor-arg value="Trust me"/>
-    </bean>
-    <bean id="talkingRobot" class="quoters.TalkingRobotImpl">
-        <property name="quoters">
-            <list>
-               <ref bean="shakespearQuoter"/>
-               <ref bean="terminatorQuoter"/>
-            </list>
-        </property>
-    </bean>
 
-    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter">
-
-    </bean>
-
-    <bean id="shakespearQuoter" class="quoters.ShakespearQuoter">
-
-
-    </bean>
 
 
 </beans>

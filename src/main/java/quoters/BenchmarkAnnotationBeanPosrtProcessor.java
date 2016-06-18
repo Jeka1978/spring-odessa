@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.Method;
@@ -16,6 +17,7 @@ import java.util.Map;
 /**
  * Created by Evegeny on 17/06/2016.
  */
+@Component
 public class BenchmarkAnnotationBeanPosrtProcessor implements BeanPostProcessor {
 
 

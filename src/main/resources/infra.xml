@@ -8,10 +8,6 @@
 
     <context:component-scan base-package="quoters"/>
 
-    <bean class="quoters.InjectRandomIntAnnotationBeanPostProcessor"/>
-    <bean class="quoters.BenchmarkAnnotationBeanPosrtProcessor"/>
-    <bean class="quoters.TransactionalAnnotationBeanPostProcessor"/>
-    <bean class="quoters.DeprecationClassReplacerBeanFactoryPostProcessor"/>
 
 
 </beans>

@@ -5,6 +5,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.InvocationHandler;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import java.util.Map;
 /**
  * Created by Evegeny on 17/06/2016.
  */
+@Component
 public class TransactionalAnnotationBeanPostProcessor implements BeanPostProcessor {
     private Map<String, Class> map = new HashMap<>();
 
